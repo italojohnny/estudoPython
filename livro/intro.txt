@@ -1,0 +1,4 @@
+CAPÍTULO 1
+INTRODUÇÃO
+Python é uma linguagem de altíssimo nível orientado a objeto, de tipagem
+dinâmica e forte, interpretada e interativa.
