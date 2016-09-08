@@ -1,4 +1,32 @@
-CAPÍTULO 1
-INTRODUÇÃO
-Python é uma linguagem de altíssimo nível orientado a objeto, de tipagem
-dinâmica e forte, interpretada e interativa.
+01 introducao
+	01.01 características
+	01.02 histórico
+	01.03 versões
+	01.04 executando programas
+	01.05 tipagem dinâmica
+	01.06 compilação e interpretação
+	01.07 modo interativo
+	01.08 ferramentas
+	01.09 cultura
+02 conceitos basicos
+	02.01 sintaxe
+	02.02 blocos
+	02.03 objetos
+	02.04 controle de fluxo
+	02.05 lacos
+		02.05.01 for
+		02.05.02 while
+03 tipos de variaveis
+	03.01 numeros
+	03.02 texto
+	03.03 listas
+	03.04 tuplas
+	03.05 outros tipos de sequencias
+	03.06 dicionarios
+	03.07 verdadeiro, falso e nulo
+		03.07.01 operadores booleanos
+04 funcoes
+05 documentacao
+06 modulos
+	06.01 escopo de nomes
+	06.02 pacotes
