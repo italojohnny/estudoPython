@@ -30,3 +30,90 @@
 06 modulos
 	06.01 escopo de nomes
 	06.02 pacotes
+07 biblioteca padrao
+	07.01 matematica
+	07.02 arquivos e i/o
+		07.02.01 sistemas de arquivos
+		07.02.02 arquivos temporarios
+		07.02.03 arquivos compactados
+		07.02.04 arquivos de dados
+	07.03 sistema operacional
+	07.04 tempo
+	07.05 expressoes regulares
+08 biblioteca de terceiros
+09 excecoes
+10 introspeccao
+	10.01 inspect
+11 geradores
+12 programacao funcional
+	12.01 lambda
+	12.02 mapeamento
+	12.03 filtragem
+	12.04 reducao
+	12.05 transposicao
+	12.06 list comprehension
+	12.07 dictionary comprehension
+	12.08 generator expression
+13 decoradores
+14 classes
+	14.01 classes abertas
+	14.02 heranca simples
+	14.03 heranca multipla
+	14.04 propriedades
+	14.05 descritores
+	14.06 sobrecarga de operadores
+	14.07 colecoes
+	14.08 metaclasses
+	14.09 classes-base abstratas
+	14.10 decoradores de classes
+15 testes automatizados
+16 threads
+17 armazenamento de dados
+	17.01 serializacao
+	17.02 yaml
+	17.03 json
+	17.04 xml
+		17.04.01 dom
+		17.04.02 sax
+		17.04.03 elementtree
+	17.05 bando de dados
+	17.06 dbi
+	17.07 mysql
+	17.08 sqllite
+	17.09 firebird
+	17.10 postgresql
+	17.11 mapeamento objeto-relacional
+	17.12 nosql
+18 aplicacoes web
+	18.01 cliente web
+	18.02 framework pyramid
+19 processamento numerico
+	19.01 numpy
+		19.01.01 arranjos
+		19.01.02 matrizes
+	19.02 scipy
+	19.03 matplotlib
+20 interface grafica
+	20.01 arquitetura
+	20.02 pyqt
+21 computacao grafica
+	21.01 matrizes x vetores
+	21.02 processamento de imagem
+	21.03 svg
+	21.04 imagens 3D
+		21.04.01 vpython
+		21.04.02 opengl
+22 processamento distribuido
+	22.01 objetos distribuidos
+23 ipython
+24 plataformas portateis
+	24.01 kivy
+25 dependencias
+	25.01 ambientes virtuais
+	25.02 empacotaento e distribuicao
+26 desempenho
+
+apendice_a
+apendice_b
+apendice_c
+apendice_d

@@ -32,10 +32,4 @@ for mod in mods:
 
 # dividir programas em modulos facilita o reaproveitamenteo e a localizacao de
 # falhas no codigo.
-# escopo de nomes
-# O escopo de nomes em python e mantido por meio de namespaces, que sao
-# dicionarios que relacionam os nomes dos objetos (referencias) e os objetos em
-# si.
-# Normalmente, os nomes estao definidos em dois dicionarios, que pode ser
-# consultados atraves das funcoes locals() e globals(). Estes dicionarios sao
-# atualizados dinamicamente em tempo de execucao.
+
