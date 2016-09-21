@@ -108,3 +108,5 @@ if __name__ == '__main__':
     print('3 coluna:', mat.col(3))
     print('fatia com 2 a 3 linha', mat[2:3])
     print('somatoria:', mat.sum(), 'media', mat.avg())
+
+#A matriz esparsa cresce ou diminui conforme os indices dos elementos

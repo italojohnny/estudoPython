@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<Canino>
+        <Lobo/>
+        <Raposa/>
+        <Coiote/>
+        <Cachorro cor="Branco" nome="Bandit" raca="Labrador">Melhor amigo do homem...</Cachorro>
+</Canino>

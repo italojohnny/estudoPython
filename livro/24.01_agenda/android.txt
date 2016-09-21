@@ -1,0 +1,3 @@
+title=Agenda
+author=italo
+orientation=landscape

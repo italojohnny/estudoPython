@@ -1,0 +1,19 @@
+#:kivy 1.0
+<CalcForm>:
+	formula: formula
+	resultado: resultado
+	orientacao: 'horizontal'
+	padding: 200
+	TextInput:
+		id: formula
+		multiline: False
+		font_size: 32
+	Button:
+		id: calcula
+		text: '='
+		font_size: 32
+		on_press: root.callback()
+	Label:
+		id: resultado
+		text: '0'
+		font_size: 32

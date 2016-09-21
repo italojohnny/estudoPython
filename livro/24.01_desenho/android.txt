@@ -1,0 +1,3 @@
+title=Desenho
+author=italo
+orientation=landscape

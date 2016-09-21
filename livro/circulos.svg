@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1000pt" height="1000pt" viewBox="0 0 1000 1000" version="1.1">
+<g id="surface1">
+<rect x="0" y="0" width="1000" height="1000" style="fill:rgb(86.328125%,86.328125%,86.328125%);fill-opacity:1;stroke:none;"/>
+<path style="fill:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 650 650 C 650 815.683594 515.683594 950 350 950 C 184.316406 950 50 815.683594 50 650 C 50 484.316406 184.316406 350 350 350 C 515.683594 350 650 484.316406 650 650 " transform="matrix(1,0,0,-1,0,1000)"/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(18.75%,37.5%,56.25%);fill-opacity:0.5;" d="M 650 350 C 650 184.316406 515.683594 50 350 50 C 184.316406 50 50 184.316406 50 350 C 50 515.683594 184.316406 650 350 650 C 515.683594 650 650 515.683594 650 350 "/>
+<path style="fill:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 950 650 C 950 815.683594 815.683594 950 650 950 C 484.316406 950 350 815.683594 350 650 C 350 484.316406 484.316406 350 650 350 C 815.683594 350 950 484.316406 950 650 " transform="matrix(1,0,0,-1,0,1000)"/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(37.5%,56.25%,18.75%);fill-opacity:0.5;" d="M 950 350 C 950 184.316406 815.683594 50 650 50 C 484.316406 50 350 184.316406 350 350 C 350 515.683594 484.316406 650 650 650 C 815.683594 650 950 515.683594 950 350 "/>
+<path style="fill:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 800 350 C 800 515.683594 665.683594 650 500 650 C 334.316406 650 200 515.683594 200 350 C 200 184.316406 334.316406 50 500 50 C 665.683594 50 800 184.316406 800 350 " transform="matrix(1,0,0,-1,0,1000)"/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(56.25%,37.5%,18.75%);fill-opacity:0.5;" d="M 800 650 C 800 484.316406 665.683594 350 500 350 C 334.316406 350 200 484.316406 200 650 C 200 815.683594 334.316406 950 500 950 C 665.683594 950 800 815.683594 800 650 "/>
+</g>
+</svg>
