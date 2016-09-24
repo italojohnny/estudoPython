@@ -1,0 +1,27 @@
+INTEGRACAO COM OUTRAS LINGUAGENS
+
+Existem hoje muito codigo legado desenvolvido em diversas linguagens que pode
+ser aproveitado pelo Python por meio de varias formas de integracao.
+
+Uma forma generica de fazer isso e gerar uma biblioteca compartilhada (shared
+library) utilizando o compilador da outra linguagem e fazer chamadas a funcoes
+que estao definidas na biblioteca. Modulos para CPython podem ser escritos em
+Linguagem C. Tambem e possivel integrar o Python com Fortram usando o utilitario
+f2py. que faz parte do projeto NumPy.
+
+BIBLIOTECAS COMPARTILHADAS
+O modulo ctypes, que implementa tipos compativeis com os tipos usados pelo
+linguagem C, permite evocar funcoes de bibliotecas compartilhadas.
+
+O modulo prove varias formas de evocar funcoes. Funcoes que seguem a convencao
+de chamada stdcall, como a API do Windows, podem ser acessadas por meio da
+classe windll. Dynamic-link library (DLL) e a implementacao de bibliotecas
+compartilhadas que sao usadas do windows.
+
+Para funcoes que seguem a convencao de chamada cdecl, usada pela maioria dos
+compiladores C, existe a classe cdll. Para as passagens de argumentos por
+referencia e preciso criar uma variavel que funciona como um buffer para receber
+os resultados. Isso e necessario para receber strings, por exemplo.
+
+Utilizando bibliotecas compartilhadas e possivel usar codigo desenvolvido em
+outras linguagens de uma maneira simples.

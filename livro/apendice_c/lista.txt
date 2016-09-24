@@ -1,0 +1,125 @@
+EXERCICIOS PROPOSTOS
+
+PRIMEIRA LISTA DE EXERCICIOS (CAPITULOS 1 A 5)
+1. Implementar duas funcoes:
+	* Uma que converta temperatura em graus Celsius para Fahrenheit.
+	* Outra que converta temperatura em graus Fahrenheit para Celsius.
+	Lembrando que: F=9C/5+32.
+
+2. Implementar uma funcao que retorne verdadeiro se o numero for primo (falso
+caso contrario). Testar de 1 a 100.
+
+3. Implementar uma funcao que receba uma lista de listas de comprimentos
+quaisquer e retorne uma lista de uma dimensao.
+
+4. implementar uma uncao que receba um dicionario e retorne a soma, a media e a
+variacao dos valores.
+
+5. Escrever uma funcao que:
+	* receba uma frase como parametro
+	* retorne uma nova frase com cada palavra com as letras invertidas.
+
+6. Crie uma funcao que:
+	* receba uma lista de tuplas (dados), um inteiro (chave, zero por padrao
+	igual) e um boleano (reverso, falso por padrao).
+	* retorne dados ordenados pelo item indicado pela chave e em ordem
+	descrescente se reverso for verdadeiro.
+
+SEGUNDA LISTA DE EXERCICIOS (CAPITULOS 6 A 11)
+1. Implementar um programa que receba um nome de arquivo e gere estatisticas
+sobre o arquivo (numero de caracteres, numero de linhas e numero de palavras)
+
+2. Implementar um modulo com duas funcoes:
+	* matrix_sum(*matrices),  que retorna a matriz soma de matrizes de duas
+	dimensoes.
+	* camel_case(s), que converte nomes para CamelCase.
+
+3. Implementar uma funcao que leia um arquivo e retorne uma lista de tuplas com
+os dados (o separador de campo do arquivo e uma virgula), eliminando as linhas
+vazias. Caso ocorra algum problema, imprima uma mensagem de aviso e encerre o
+programa.
+
+4. Implementar um modulo com duas funcoes:
+	* split(fn, n), que quebre o arquivo fn em partes de n bytes e salva com
+	nomes sequenciais (se fn = arq.txt, entao arq_001.txt, arqu_002.txt, ...)
+	* join(fn, fnlist), que junte os arquivos da lista fnlist em um arquivo so
+	fn.
+
+5. Crie um script que:
+	* compare a lista de arquivos em duas pastar distintas.
+	* mostre os nomes dos arquivos que tem conteudos diferente e/ ou que existem
+	em apenas uma das pastas.
+
+6. Faca um script que:
+	* leia uma arquivo texto.
+	* conte as ocorrencias de cada palavra.
+	* mostre os resultado ordenados pelo numero de ocorrencias.
+
+TERCIERA LISTA DE EXERCICIOS (CAPITULO 12 A 14)
+1. Implementar um gerador de numeros primos.
+
+2. Implementar o gerador de numeros primos com uma expressao (dica: use o modulo
+itertools).
+
+3. Implementar um gerador que produza tuplas com as cores do padrao RGB (R, G e
+B variam de 0 a 255) e uma funcao que produza uma lista com as tuplas RGB.
+Compare a performace.
+
+4. Implementar um gerador que leia um arquivo e retorne uma lista de tuplas com
+os dados (o separador de campo do arquivo e uma virgula), eliminando as linhas
+vazias. Caso ocorra algum problema, imprima uma mensagem de aviso e encerre o
+programa.
+
+QUARTA LISTA DE EXERCICIOS (CAPITULOS 15 A 18)
+1. Crie uma classe que modele um quadrado, com um atributo lado e os metodos:
+mudar valor do lado, retornar valor do lado e calcular area.
+
+2. Crie uma classe derivada de lista com um metodo que retorne os elementos da
+lista sem repeticao.
+
+3. Implemente uma classe Carro com as seguintes propriedades:
+	* Um veiculo tem uma taza de consumo de combustivel (medida em km/litro) e
+	uma quantidade de combustivel no tanque.
+	* O consumo e especificado no construtor e o nivel de combustivvel inicial e
+	0
+	* Forneca um metodo mover(km) que recebe a distancia em quilometros e reduza
+	o nivel de combustivel no tanque de gasolina.
+	* Forneca um metodo gasolinha(), que retorna o nivel atual de combustivel.
+	* Forneca um metodo abastecer(litros), para abastecer o tanque.
+
+4. Implemente uma classe Vetor:
+	* com coordenadas x, y e z.
+	* que suporte soma, subtracao, produto escalar e produto vetorial.
+	* que calcule o modulo (valor absoluto) do vetor.
+
+5. Implemente um modulo com:
+	* uma classe Ponto, com coordenadas x, y e z.
+	* uma classe Linha, com dois pontos A e B, que calcule o comprimento da
+	linhas.
+	* uma classe Triangulo, com tres pontos A, B e C, que calcule o comprimento
+	dos lados e a area.
+
+QUINTA LISTA DE EXERCICIOS (CAPITULOS 19 A 22)
+1. Implementar uma classe Animal com os atributos: nome, especie, genero, peso,
+altura e idade. O objeto derivado dessa classe devera salvar seu estado em um
+metodo chamdo "salvar" e recarregar o estado em um metodo chamado "desfazer".
+
+2. Implementar uma funcao que formate uma lista de tuplas com tabela HTML.
+
+3. Implementar uma aplicacao web com uma saudacao dependente do horario 
+(exemplo: "Bom dia, sao 09:00.", "Boa tarde, sao 13:00." e 
+"Boa noite, sao 23:00.").
+
+4. Implementar uma aplicacao web com um formulario que receba expressoes python
+e retorne a expressao com seu resultado.
+
+SEXTA LISTA DE EXERCICIOS (CAPITULOS 23 A 31)
+1. Implementar um modulo com uma funcao tribonacci(n) que retorna uma lista de
+n numeros de Tribonacci, onde n e o paramentro da funcao. Faca testes da funcao
+caso o modulo seja executado como principal.
+
+2. Implementar:
+	* um servidor que publique um objeto distribuido e este evoque a funcao
+	tribonacci.
+	* um cliente que use o objeto distribuido para calcular a sequencia de
+	Tribonacci.

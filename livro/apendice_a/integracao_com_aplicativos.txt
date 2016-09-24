@@ -1,0 +1,140 @@
+INTEGRACAO COM APLICATIVOS
+Python pode ser udado como linguagem script em varios aplicativos para
+automatizar tarefas e adcionar novas funcionalidades, ou para oferecer seus
+recursos para outro programa, por meio de uma API ou de um protocolo. Muitos
+desses pacotes de software sao open source, como o LibreOffice e o Blender, por
+exemplo.
+
+Muitas vezes isso e possivel porque esses programas adotaram uma arquitetura de
+plugins na qual existe uma infraestrutura generica que permite que componentes
+externos sejam ligados aos aplicativos.
+
+Na maioria dos casso, isso e viabilizado mediante o uso de uma API que e
+disponibilizada pelo software, que e vista pelo python como um modulo ou um
+pacote, que apenas precisa estar no PYTHONPATH para que possa ser utilizado.
+Com isso, o programa pode fazer chamadas as rotinas do aplicativo, para utilizar
+seus recursos e se comunicar.
+
+BLENDER
+Blender e um software de modelagem 3d de codigo aberto, capaz de gerar
+animacoes, e tambem funciona como game engine (infraestrutura especializada para
+criacao de jogos para computador).
+
+No Blender, umacena e composta de objetos que precisam ser fixados em posicoes e
+conectados a cena. Se o objeto nao estiver conectado a cena, ele sera eliminado
+ao fim do processamento. Para cada solido e possivel configurar varios
+materiais, que podem ter zero ou mais texturas.
+
+A cena-padrao do Blender e composta de tres objetos: uma camera, uma lampada e
+um cubo. A escala do Blender e medida em BUs (Blender Units) por padrao. Com
+Python e possivel acessar as estruturas da cena Blender por meio de modulos.
+
+A API do Blender oferece varias texturas procedurais, uma colecao de solidos
+primitivos prontos e operacoes predefinidas que podem ser criados e alterados
+por meio de codigo.
+
+Para executar codigo em python no ambuiente do blender, basta carregar o
+programa na janela de editor de texto do blender e usar a opcao de execucao no
+menu. Ou, no terminal: blender -P nome_script.py
+
+GAME ENGINE
+Game engine e um software que facilita a criacao de jogos, simulando
+determinados aspectos da realidade, de forma a possibilitar a interacao com
+objetos em tempo real. Para isso, ele deve implementar varias funcionalidades
+que sao comuns em jogos, como por exemplo a capacidade de simulacao fisica. O
+objetivo principal do uso de game engines e centrar o foco da criacao do jogo no
+conteudo, ou seja, mapas (niveis), personagens, objetos, dialogos, trilha
+sonora e cenas. E comum que varios jogos usem o mesmo engine, reduzindo, assim,
+o esforco de desenvolvimento.
+
+Um dos principais recursos fornecidos por game engines e a capacidade de
+renderizar cenas em 2d e 3d em tempo real, geralmente usando uma biblioteca
+grafica, como o OpenGL, permitindo animacoes e efeitos especiais. O componente
+especializado para esta funcao e conhecida como render engine.
+
+Alem disso, a simulacao fisica tambem e essensial para um jogo, para representar
+de forma adequada os movimentos dos personagens influenciados pela gravidade,
+pela inercia, pelo atrito, pela deteccao de colisoes e por outros fatores. O
+componente que realiza esses calculos e chamado de physics engine.
+
+Outra funcionalidade importante e a logica, que e como o jogo determina o
+comportamento do ambiente e dos personagens. Em muitos casos, o game engine 
+suporta uma ou mais linguagens para descreve-la.
+
+Os game engines podem incluir outros recursos importantes para determinados
+tipos de jogos, como conectividade. No caso de MMOG (Massively Multiplayer
+Online Games), que sao muito complexos, a infraestrutura de software e mais
+conhecida como middlewre.
+
+A popularizacao de game engines aconteceu durante a decada de 90, gracas a Id
+Software, que desenvolveu os jogos que definiram o genero chamado FPS (First
+Person Shooter), jogos de acao em primeira pessoa. Esses titulos tiveram seus
+engines licenciados para outras empresas, que criaram outros jogos desenvolvendo
+o conteudo do jogo. Em paralelo, os prcessadores de video foram incorporado
+suporte as funcoes graficas cada vez mais sofisticadas, o que facilitou a
+evolucao dos engines. A Id tambem liberou os game engines da series DOOM e
+Quaker em GPL.
+
+Alem de areaa de entretenimento, outras areas podem se beneficiar desses
+engines. Chamadas genericamente de serious games, aplicacoes nas areas de
+treinamento, arquitetura, engenharia, medicina e marketing estao se
+popularizando aos poucos.
+
+O blender inclui um game engine generico que permite a criacao de jogos 3d,
+usando o proprio aplicativo para criacao de conteudo e python para as partes
+com logica mais complexa.
+
+O blender game engine (BGE) usa como phusics engine o projeto, também open
+source, chamdo Bullet. Com ele, e possivel simular o comportamento de corpos
+rigidos (como pecas de maquinaria), macios (como tecidos), estaticos (fixos) e
+ntangiveis (que nao sao afetados por colisoes).
+
+O render engine do Blender suporta GLSL (OpenGL Shading Language), o que permite
+que  permite que ele utilize recursos avancados disponiveis nos processadores de
+video mais recentes.
+
+Ja a logica e definida no BGE por meio de Logic Bricks, que segue um modelo
+baseado em eventos. Eventos sao associados a um objeto de cena e podem ser
+gerados por perifericos de entrada (como telcado e mouse), pelo sistema (tempo),
+pelo proprio BGE (colisoes, por exemplo) ou por mensagens enviadas por outros
+objetos. Quando um ou mais eventos sao detectados, o BGE toma decisao e reage de
+acordo.
+
+Esistemm tres tipos de bricks:
+	* sensores (sensors), que detectam os eventos;
+	* controladores (controllers), que relacionam os sensores com os ativadores
+	adequados;
+	* ativadores (actuators), que ativam as reacoes.
+
+No painel Logic, as associacoes entre os bricks podem ser definidas de forma
+interativa. O BGE tem diversos ativadores prontos, para realizar tarefas como
+encerrar a execucao ou mudar a velocidade do objeto.
+
+O BGE pode evocar codigo em python para responder aos eventos por meio do
+controlador "Python". Quando um modulo em python e executado, bge.logic (com as
+funcoes para identificar e manipular os objetos do engine) e automaticamente
+importado.
+
+O modulo muda a posicao do objeto que ativou o sensor para um BU acima do objeto
+chamado Portal, independentemente do lugar na cena em que estiver localizado.
+
+
+LIBREOFFICE
+LibreOffice e um conhecido pacote de automacao de escritorio de codigo aberto
+que inclui editor de textos, planilha e outros aplicativos. Alem disso, o
+LibreOffice tambem suporta Python (entre outras linguagens) como linguagem de
+macro, permitindo a automatizacao de tarefas para a construcao de extensoes e em
+um servico para atender a conexoes por meio de uma API chamada UNO (Universal
+Network Objects).
+
+Para que o LibreOffice possa identificar o script escrito em Python como um
+arquivo de macro, ele precisa estar na pasta scripts em Python.
+
+A API do LibreOffice e bastante completa e simplifica varias atividades que sao
+lugar-comum em programas para ambiente desktop.
+
+EXCEL
+Existem varias bibliotecas para ler e gravas dados no formato do Excel (seja das
+versoes antigas ou recentes). Duas das mais completas sao: xlwt (escrita) e xlrd
+(leitura).
+
