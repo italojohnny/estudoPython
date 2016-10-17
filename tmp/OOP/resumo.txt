@@ -1,0 +1,231 @@
+CLASSES
+Objetos são abstrações computacionais que representam entidades, com suas
+qualidades (atributos) e as ações (métodos) que estas podem realizar. A classe é
+a estrutura básica do paradigma de orientação a objetos, que representa o tipo
+do objeto, um modelo a partir do qual os objetos são criados.
+
+Por exemplo, a classe Canino  descreve as caracteristicas e ações dos caninos em
+geral, enquanto o objeto Bandit representa um canino em particular.
+
+Os atributos são estruturas de dados que armazenam informações sobre o objeto e
+os métodos são funções associadas ao objeto, que descrevem como o objeto se
+comporta.
+
+No Python, novos objetos são criados a partir das classes por meio de
+atribuição. O objeto é uma instância da classe, que possui características
+prórpias. O construtor é um método especial, chamado __new__(). Após a chamada
+ao construtor, o método __init__() é chamado para inicializar a nova instância.
+
+Um objeto continua existindo na memória enquanto houver pelo menos uma
+referência a elel. O interpretador Python possui um recursos chamado coletor de
+lixo (Garbage Collector) que limpa da memória objetos sem referências. Quando o
+objeto é apagado, o método especial __done__() é evocado. Funcões ligadas ao
+coletor de lixo podem ser encontradas no módulo gc.
+
+Em Python:
+	* quase tudo é objeto, masmo os tipos básicos, como números inteiros;
+	* tipos e classes são unificados;
+	* os operadores são na verdade chamadas para métodos especiais;
+	* as classes são abertas (menos para os tipos builtins).
+
+Métodos especiais são identificados por nomes padrão __metodo__() (dois
+sublinhados no início e no final do nome) e definem como os objetos derivados da
+classe se comportarão em situações particulares, como em sobrecarga de
+operadores.
+
+As classes são derivadas da classe object e podem utilizar recursos como
+propriedades (properties) e metaclasses. Propriedades são atributos calculados
+em tempo de execução por meio de métodos, enquanto as metaclasses são classes
+que geram classes. Com isso, permitem personalizar o comportamento das classes.
+
+Métodos de objetos podem usar atributos e outros métodos do objeto. A variável
+self, que representa o objeto e também precisa ser referencia de forma
+explíxita. O nome self é uma convenção, assim como cls, podendo ser trocada por
+outro nome qualquer, porém é considerado como boa prática manter o nome.
+
+Métodos de classe podem usar apenas atributos e outrs métodos de classe. O
+argumento cls representa a classe em si e precisa ser passado explicitamente
+como primeiro parâmentro do método.
+
+Método estático são aqueles que não têm ligação com atributos do objeto ou da
+classe. Funcionam como as funções comuns.
+
+O método __repr__() é usado internamente pelo comando print para obter uma
+representação do objeto em forma de texto.
+
+Em Python, não existem variáveis e métodos privados (que só podem ser acessados
+a partir do próprio objeto). Em vez disso, é usada uma converção. Usar um nome
+que comece com sublinhado (_) deve ser considerado parte da implementação
+interna do objeto e, portanto, está sujeito a mudanças sem aviso prévio. Além
+disso, a linguagem oferece uma funcionalidade chamada Name Mangling, que
+acrescenta um sublinhado e o nome da classe na frente de nomes que iniciam com
+dois sublinhados (__).
+
+O metodo __recalc() aparece como _Calc__recalc() e o atributo __res com
+_Calc__res para for do objeto.
+--------------------------------------------------------------------------------
+
+CLASSES ABERTAS
+No Python, as classes que não são builtins podem ser alteradas em tempo de
+execução graças à natureza dinâmica da linguagem. É possível acrescentar métodos
+e atributos novos, por exemplo. A mesma lógica se aplica aos objetos.
+
+HERANÇA SIMPLES
+Herança é um mecanismo que a orientação a objeto provê, com objetos de facilitar
+o reaproveitamento do código. A ideia é que as classes sejam construídas
+formando uma hierarquia.
+
+A nova classe pode implementar novos métodos e atributos e herdar meétodos e
+atributos da classe antiga (que também pode ter herdaddo de classes anteriores),
+porém esses métodos e atributos podem ser substituidos na nova classe.
+
+A forma mais comum de herança é chamada de herança simples, na qual a nova
+classe é derivada de apneas uma classe já existente, porém é possível criar
+várias classes derivadas, criando uma hierarquia de classes.
+
+Para localizar os métodos e atributos, a hierarquia é seguida de baixo para
+cima, de forma semelhante à da busca nos namespaces local e global.
+
+HERANÇA MULTIPLA
+Na herança múltipla, a nova classe deriva de duas ou mais classes existentes.
+
+A diferença mais significativa em relação á herança simples é a ordem de
+resolução de métodos (em inglês, Method Resolution Order - MRO).
+
+A resolução é feita a partir da esquerda, descendo até encontrar a classe em
+comum entre os caminhos dentro da hierarquia. Quando é encontrada uma classe em
+comum, a procura passa para o caminho à direita. Ao esgotar os caminhos, o
+algoritmo prossegue para a classe em comum e reprete o processo.
+
+Na hierarquia de classe do exemplo, a MRO para a classe dos anfíbios será:
+[<class '__main__.Anfibio'>,
+<class '__main__.Carro'>,
+<class '__main__.Terrestre'>,
+<class '__main__.Barco'>,
+<class '__main__.Aquatico'>,
+<type 'object'>]
+
+A herança múltipla é um recurso que gera muita controvérsia, pois seu uso pode
+tornar o projeto confuso e obscuro.
+--------------------------------------------------------------------------------
+
+PROPRIEDADES
+Propriedades (propertis) são atributos calculados em tempo de execução.
+As propriedades são criadas por meio da função / decorador property.
+O uso de propriedades permite:
+	* validar a entrada do atributo.
+	* criar atributos apenas de leitura.
+	* simplificar o uso da classe.
+	* mudar de um atributo convencional para uma propriedade sem a necessidade
+	de alterar as aplicações que utilizam a classe.
+
+[07_exemplo.py]
+[08_exemplo.py]
+[09_exemplo.py]
+
+Propriedades são particularmente interessantes para quem desenvolve bibliotecas
+para serem usadas por outras pessoas.
+
+DESCRITORES
+Descritor (descriptor) é uma forma mais geral de definir como os atributos são
+calculados por meio de um protocolo. Com isso é possível obter um código mais
+fácil de reaproveitar do que com properties.
+
+O protocolo convenciona as seguinte assinaturas de métodos:
+	* descriptor.__get__(self, obj, type=None) - que retorna um valor.
+	* descriptor.__set__(self, obj, val) - que retorna None.
+	* descriptor.__delete__(self, obj) - que retorna None.
+
+O descritor deve definir um ou mais desses métodos.
+
+[10_exemplo.py]
+
+Com isso, é mais fácil reaproveitar a validação de tipo.
+--------------------------------------------------------------------------------
+
+SOBRECARGA DE OPERADORES
+No Python, o comporamento dos operadores é definido por métodos especiais, porém
+tais métodos só podem ser alterado nas classes abertas. Por convenção, os
+métodos especiais têm nomes que começam e terminam com "__".
+| *  | __add__      | adição
+| -  | __sub__      | subtração
+| *  | __mul__      | multiplicação
+| /  | __div__      | divisão
+| // | __floordiv__ | divisão inteira
+| %  | __mod__      | módulo
+| ** | __pow__      | potência
+| +  | __pos__      | positivo
+| -  | __neg__      | negativo
+| <  | __lt__       | menor que
+| >  | __gt__       | maior que
+| <= | __le__       | menor ou igual a
+| >= | __ge__       | maior ou igual a
+| == | __eq__       | igual a
+| != | __ne__       | diferente de
+| << | __lshift__   | deslocamento para a esquerda
+| >> | __rshift__   | deslocamento para a direita
+| &  | __and__      | e bit-a-bit
+| |  |  __or__      | ou bit-a-bit
+| ^  | __xor__      | ou exclusivo bit-a-bit
+| ~  | __inv__      | inversão
+
+[11_exemplo.py]
+
+Observações:
+	* A subtração definida no código não é comutativa (da mesma forma que a 
+	adição em strings também não é)
+	* A classe str não é aberta, portanto não é possivel altar o comportamento
+	da string-padrão do Python. Porém a classe String é aberta.
+	* A redefinição de operadores conhecidos pode dificultar a leitura do 
+	código.
+--------------------------------------------------------------------------------
+
+COLEÇÕES
+Além de métodos especiais para obejtos escalares, existem também métodos
+especiais para lidar com objetos que funcionam como coleção (da mesma forma que
+as listas e os dicionários), possibilitando o acesso aos itens que fazem parte
+da coleção.
+
+[12_exemplo.py]
+
+A matriz esparsa cresce ou diminui conforme os índices dos elementos.
+--------------------------------------------------------------------------------
+
+METACLASSES
+Em uma linguagem orientada a objeto em que (quase) tudo são objetos e todo
+objeto tem uma classe, é natural que as classes também sejam tratadas como
+objetos.
+
+Metaclasse é uma classe cujas instâncias são classes, sendo assim, a metaclasse
+define o comportamento das classes derivadas a partir dela.
+Em python, a classe type é uma metaclasse e pode ser usada para criar outras
+metaclasses.
+
+[13_exemplo.py]
+
+Com isso, todas as referências apontam para o mesmo objetos, e o recurso (a
+conexão de banco de dados) é reaproveitado.
+--------------------------------------------------------------------------------
+
+CLASSE-BASE ABSTRADAS
+Python suporta Abstract Base Classes, que são metaclasses que permitem forçar a
+implementação de determinados métodos e atributos das classes e subclasses
+derivadas.
+
+O módulo abc define a metaclasse ABCMeta e os decoradores abstractmethod e 
+abstractproperty que identificam os métodos e as propriedades que devem ser
+implementaddas.
+
+[14_exemplo.py]
+
+A avaliação da existência dos métodos abstratos ocorre durante o processo de
+criação de objetos a partir da classe, porém esta não leva em conta os
+parâmetros dos métodos.
+--------------------------------------------------------------------------------
+
+DECORADORES DE CLASSE
+Os decoradores também podem ser aplicador em classes.
+
+[15_exemplo.py]
+
+Com isso, o decorador mudou o comportamento da classe.

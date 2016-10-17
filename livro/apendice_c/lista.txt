@@ -1,44 +1,8 @@
 EXERCICIOS PROPOSTOS
 
 PRIMEIRA LISTA DE EXERCICIOS (CAPITULOS 1 A 5)
-1. Implementar duas funcoes:
-	* Uma que converta temperatura em graus Celsius para Fahrenheit.
-	* Outra que converta temperatura em graus Fahrenheit para Celsius.
-	Lembrando que: F=9C/5+32.
-
-2. Implementar uma funcao que retorne verdadeiro se o numero for primo (falso
-caso contrario). Testar de 1 a 100.
-
-3. Implementar uma funcao que receba uma lista de listas de comprimentos
-quaisquer e retorne uma lista de uma dimensao.
-
-4. implementar uma uncao que receba um dicionario e retorne a soma, a media e a
-variacao dos valores.
-
-5. Escrever uma funcao que:
-	* receba uma frase como parametro
-	* retorne uma nova frase com cada palavra com as letras invertidas.
-
-6. Crie uma funcao que:
-	* receba uma lista de tuplas (dados), um inteiro (chave, zero por padrao
-	igual) e um boleano (reverso, falso por padrao).
-	* retorne dados ordenados pelo item indicado pela chave e em ordem
-	descrescente se reverso for verdadeiro.
 
 SEGUNDA LISTA DE EXERCICIOS (CAPITULOS 6 A 11)
-1. Implementar um programa que receba um nome de arquivo e gere estatisticas
-sobre o arquivo (numero de caracteres, numero de linhas e numero de palavras)
-
-2. Implementar um modulo com duas funcoes:
-	* matrix_sum(*matrices),  que retorna a matriz soma de matrizes de duas
-	dimensoes.
-	* camel_case(s), que converte nomes para CamelCase.
-
-3. Implementar uma funcao que leia um arquivo e retorne uma lista de tuplas com
-os dados (o separador de campo do arquivo e uma virgula), eliminando as linhas
-vazias. Caso ocorra algum problema, imprima uma mensagem de aviso e encerre o
-programa.
-
 4. Implementar um modulo com duas funcoes:
 	* split(fn, n), que quebre o arquivo fn em partes de n bytes e salva com
 	nomes sequenciais (se fn = arq.txt, entao arq_001.txt, arqu_002.txt, ...)

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="utf-8"/>
+		<title>Página de listagem</title>
+	</head>
+	<body>
+		<h1>Listar</h1>
+		<hr/>
+		<table>
+			<tr>
+				<td>id</td>
+				<td>nome</td>
+				<td>telefone</td>
+				<td>cpf</td>
+				<td>email</td>
+				<td>excluir</td>
+				<td>alterar</td>
+			</tr>
+			{% for pessoa in pessoas %}
+			<tr>
+				<td>{{ pessoa._id }}</td>
+				<td>{{ pessoa.nome }}</td>
+				<td>{{ pessoa.telefone }}</td>
+				<td>{{ pessoa.cpf }}</td>
+				<td>{{ pessoa.email }}</td>
+				<td><a href="/excluir/{{ pessoa._id }}">X</a></td>
+				<td><a href="/alterar/{{ pessoa._id }}">X</a></td>
+			</tr>
+			{% endfor %}
+		</table>
+
+	</body>
+</html>

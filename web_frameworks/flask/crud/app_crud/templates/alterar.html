@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="utf-8"/>
+		<title>Página de Alteração</title>
+	</head>
+	<body>
+		<h1>Alterar</h1>
+		<hr/>
+		<form action="" method="POST">
+			<table>
+				<tr><td>
+					<label>nome</label>
+				</td><td>
+					<input type="text" name="nome" value="{{ pessoa.nome }}" />
+				</td></tr><tr><td>
+					<label>telefone</label>
+				</td><td>
+					<input type="text" name="telefone" value="{{ pessoa.telefone }}"/>
+				</td></tr><tr><td>
+					<label>cpf</label>
+				</td><td>
+					<input type="text" name="cpf" value="{{ pessoa.cpf }}" />
+				</td></tr><tr><td>
+					<label>email</label>
+				</td><td>
+					<input type="text" name="email" value="{{ pessoa.email }}"/>
+				</td></tr>
+			</table>
+			<input type="submit" value="Alterar dados" />
+		</form>
+	</body>
+</html>

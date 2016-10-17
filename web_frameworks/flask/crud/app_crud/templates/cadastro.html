@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="utf-8"/>
+		<title>Página de inserção</title>
+	</head>
+	<body>
+		<h1>Inserir</h1>
+		<hr/>
+		<form action="{{ url_for('cadastro') }}" method="POST">
+			<table>
+				<tr><td>
+					<label>nome</label>
+				</td><td>
+					<input type="text" name="nome" />
+				</td></tr><tr><td>
+					<label>telefone</label>
+				</td><td>
+					<input type="text" name="telefone" />
+				</td></tr><tr><td>
+					<label>cpf</label>
+				</td><td>
+					<input type="text" name="cpf" />
+				</td></tr><tr><td>
+					<label>email</label>
+				</td><td>
+					<input type="text" name="email" />
+				</td></tr>
+			</table>
+			<input type="submit" value="enviar" />
+		</form>
+	</body>
+</html>
