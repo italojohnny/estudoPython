@@ -17,4 +17,4 @@ class Hovercraft (Nave):
     pass
 
 z = Zeppelin()
-#h = Hovercraft()
+h = Hovercraft()

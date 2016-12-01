@@ -1,0 +1,66 @@
+LISTA DE COISAS QUE UMA LINGUAGEM DE PROGRAMAÇÃO PRECISA TER SEGUNDO A UML
+
+visibilidade de atributos e métodos:
+	privado
+	publico
+	protegido
+	pacote
+herança
+herança multipla (preciso confirmar: acredito que isso é feito com interface)
+polimorfismo
+Relacionamentos
+	associação
+	associação unária ou reflexiva
+	associação binária
+	associação ternária ou n-ária
+	agregação
+	composição
+	generalização/especificação (heranca)
+	classe associativa
+	dependência
+	realização
+portas
+interfaces
+	interfaces fornecidas
+	interfaces requeridas
+restrições
+Estereótipos do diagrama de classes
+	<<entity>>
+	<<boundary>>
+	<<control>>
+	<<enumeratio>>
+--------------------------------------------------------------------------------
+
+VISIBILIDADE DE ATRIBUTOS E MÉTODOS:
+(-) privado:   somente os objetos da classe detentora dela poderão utilizá-la.
+(#) protegido: além dela, também os objetos das subclasses poderão utilizá-la.
+(+) público:   podem ser utilizado por qualquer objeto.
+(~) pacote:    poderão utilizá-la apenas os objetos do mesmo pacote.
+--------------------------------------------------------------------------------
+
+...
+--------------------------------------------------------------------------------
+
+RELACIONAMENTOS:
+são linhas que representão vínculos para compartilhamento de informação. 
+Essas possuem:
+	* título: para auxiliar a compreensão do vínculo (não influência o código);
+	* papéis: para auxiliar ...
+	* multiplicidade: (n..n) onde o primeiro número representa o mínimo e o 
+	segundo, máximo.
+
+|0..1| nenhum ou um. Não é obrigado, mas se houver, será apenas um.
+|1..1| um e somente um objeto da classe relaciona-se com o objeto da outra classe.
+|0..*| nenhum ou muitos. Não é obrigado, mas se houver, podem ser muitos.
+|*   | muitos. Não se sabe exatamente quantos, mas é obrigado haver.
+|1..*| no mínimo 1, mas podem ter mais.
+|3..5| no mínimo 3, no máximo 5.
+
+	quando não é exibida a multiplicidade no relacionamento, entende-se que é 1..1
+
+
+---------
+< >------
+<x>------
+<|-------
+

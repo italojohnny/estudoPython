@@ -70,10 +70,17 @@ def numerar (l):
 
 
 #teste
-f = 'OP, É mais facio enviar um sinal de sos por codigo morse'.split(' ')
+f = 'Gostaria muito de ter uma namoradinha para andar de mãos dadas por ai. Ter alguem para cuidar e me preocupar.'.split(' ')
 #f = 'Qual é a língua mais bonita do mundo? Você não deve saber, não mesmo!'.split(' ')
 f = minimizar(f)
 f = asciilizar(f)
 f = embaralhar(f)
 #f = numerar(f)
-print(f)
+print(str(f))
+
+string = ''
+for i in f:
+    string += i
+    string += ' '
+
+print(string)

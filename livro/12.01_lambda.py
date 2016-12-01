@@ -21,4 +21,6 @@ amp = lambda x, y, z: (x ** 2 + y ** 2 + z ** 2) ** .5
 print(amp(1, 1, 1))
 print(amp(3, 4, 5))
 
+print(list(lambda x: x+1, [1,2,3,4,5,6,7,8,9]))
+
 
