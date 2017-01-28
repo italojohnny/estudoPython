@@ -1,4 +1,4 @@
-#!usr/python3.5
+#!/usr/python3.5
 """
 MYSQL
 e um sgbd cliente-servidor reconhecido pelo bom desempenho e e bastante usado

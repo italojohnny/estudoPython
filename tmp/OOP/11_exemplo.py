@@ -1,4 +1,4 @@
-#!/usr/pytho3.5
+#!/usr/python3.5
 
 class String (str):
     def __sub__ (self, s):
