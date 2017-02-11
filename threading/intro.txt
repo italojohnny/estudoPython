@@ -1,0 +1,141 @@
+python e uma linguagem bem generica e facil de ser utilizada. Qualquer usuario pode aprender a programar em python de uma maneira bem facil, principalmente porque a linguagem encapsula conceitos dificeis em implementacoes faceis.
+
+Neste artigo vamos tratar da utilizacao de threads em python. Threads sao fluxos de programas que executam em paralelo dentro de uma aplicacao, isto e, uma ramificacao de uma parte da aplicacao que e executada de forma independente e escalonada independentemente do fluxo inicial da aplicacao.
+
+Imaginemos, por exemplo, uma aplicacao que mede, de tempos em tempos, a condicao de determinados sensores. Supondo que cada sensor precisa ser medido com uma frequencia diferente , isto e, uma a cada 30 segundos, outro a cada 45 segundos e, por fim, um terceiro a cada 75 segundos.
+
+Implementar isso de maneira sequencial e trabalhoso. Um jeito facil, porem e a implementaccao de uma thread independente para a leitura em cada um dos sensores. Desta forma a thread espera o tempo determinado para a leitura do sensor a que esta ligada, sem se preocupar, ou mesmo saber, sobre os outros sensores.
+
+Assim, neste caso, bastaria fazer uma classe por tipo de sensor, sendo que cada classe seria uma thread. Para transformar uma classe em thread, sao necessarias duas modificacoes na classe:
+
+	* A classe em questao estende a classe thread do pacote threading
+	* Implementar o metodo run(), que sera chamado quando a thread iniciar
+
+Em python, o pacote que providencia as funcionalidades de thread e chamado threading, e deve ser importado no comeco do seu programa:
+
+	from threadinf import Thread
+
+Segue um exemplo basico, de uma classe chamada Th que implementa Thread e o metodo run(). O conteudo do metodo run sera executado em uma thread separada sempre que o metodo start, definido na classe Thread e herdado pela classe Th no nosso exmeplo, for chamado:
+
+	from threading import Thread
+
+	class Th (Thread):
+		def __init__ (self, num):
+			Thread.__init__(self)
+			self.num = num
+
+		def run (self):
+			print "Hello"
+			print self.num
+
+	a = Th(1)
+	a.start()
+
+Apesar de, no exemplo acima, o conteudo do metod run ser executado em uma thread separada, nao e possivel comprovar isso apenas pela saida do programa
+
+Afim de comprovarmos que cada thread e executada de forma independente e escalonada indempendentemente do fluxo inicial da aplicacao, vamos analisar o proximo exemplo. Nele criamos varias threads simples Th, como as do exemplo acima, porem ao inves de simplesmente imprimirmos uma mensagem na thread ela vai executar um numero definido de vezes COUNTDOWN antes de finalizar sua execucao:
+
+	from threading import Thread
+	import sys
+
+	COUNTDOWN = 5
+
+	class Th (Thread):
+		def __init__ (self, num):
+			sys.stdout.write("Making thread number " + str(num) + "\n")
+			sys.stdout.flush()
+			Thread.__init__(self)
+			self.num = num
+			self.countdown = COUNTDOWN
+
+		def run (self):
+			while (self.countdown):
+				sys.stdout.write("Thread " + str(self.num) + " (" + str(self.countdown) + ") \n")
+				sys.stdout.flush()
+				self.countdown -= 1
+
+	for thread_number in range(5):
+		thread = Th(thread_number)
+		thread.start()
+
+Caso voce rode o programa acima, a saida nao necessariamente sera igual todas as vezes,, ja que a alocacao das threads para execucao no processador nao e um processo determinado. Mesmo rodando multiplas vezes, o mesmo programa em um mesmo computador as saida irao variar de uma execucao para outra.
+
+Um ponto interessante de se notar no exemplo acima e que, em vez de usarmos print para imprimir na saida padrao, utilizamos sys.stdout.write seguind de uma chamada a sys.stdout.flush.
+
+Isto foi feito para garantir que as mensagem fossem impressas em ordem, ja que chamando a print por diversas threads simultaneamente nao garante a ordem de impressao dos caracteres.
+
+SINCRONIZACAO DE THREADS
+
+Nos exemplo citados anteriormente, usou-se threads para efetuar processamente paralelos distintos e sem ligacao entre si. No entanto, no mundo real muitas vezes as diversas linhas de execucao representadas pelas threads de um programa precisam, eventualmente comunicar-se entre si.
+
+Uma forma simples de comunicacao e aquela que precisa ocorrer no final do processamento das threads. Exemplos tipicos deste tipo de necessidade sao programas que processam dados em vetores ou matrizes.
+
+Se estes vetores ou matrizes forem muitos grandes e os calculos efetuados em cada elemento relativamente demorados e independentes ate certo ponto, a utilizacao de threads pode acelerar bastante este tipo de calculo, ja que o trabalho e de alguma forma dividido entre as diversas threads.
+
+Ao final do processo, basta realizarmos um calculo mais simples que agrega os sub-totais calculados pelas threads. Este tipo de sincronizacao no final da execucao de uma thread pode ser feito atraves do metodo join da classe Thread.
+
+Por exemplo, imaginemos um programa que soma os valores de um vetor de inteiros com 1000 elementos cujos valores variam de 0 a 100. Para fins deste exemplo, este vetor sera criado com valores randomicos.
+
+Serao criadas quatro threads que calcularao a soma de 250 elementos cada um. Ao fim do processamento, os sub-totais gerados pelas quatro threads serao somados para gerar um unico valor total referente a soma de todos os elementos do vetor.
+
+	from threading import Thread
+	import random
+	import sys
+
+	NUM_VALUES = 1000
+	values = []
+	sequential_total = 0
+	threaded_total = 0
+	threads = []
+	NUM_THREADS = 4
+
+	class Th (Thread):
+		subtotal = 0
+		def __init__ (self, num):
+			sys.stdout.write ("Making thread number " + str(num) + "\n")
+			sys.stdout.flush()
+			Thread.__init__(self)
+			self.num = num
+
+		def run(self):
+			range_start = self.num * NUM_VALUES / NUM_THREADS
+			range_end = ((self.num + 1) * NUM_VALUES / NUM_THREADS) -1
+			for i in range (range_start, range_end):
+				self.subtotal += values[i]
+
+			sys.stdout.write ("Subtotal for thread " 
+					+ str(self.num) 
+					+ ": " 
+					+ str(self.subtotal) 
+					+ " (from " 
+					+ str(range_start)
+					+ " to "
+					+ str(range_end)
+					+ ")\n")
+			sys.stdout.flush()
+
+		def get_subtotal (self):
+			return self.subtotal
+
+	for i in range (NUM_VALUES):
+		values.append(random.randint(0, 100))
+
+	for i in range (NUM_VALUES):
+		sequential_total += values[i]
+
+	print("Sequential total: " + str(sequential_total))
+
+	for thread_number in range (NUM_THREADS):
+		threads.insert(thread_number, Th(thread_number))
+		threads[thread_number].start()
+
+	for thread_number in range (NUM_THREADS):
+		threads[thread_number].join()
+		threaded_total += threads[thread_number].get_subtotal()
+
+	print ("Thread total: " + str(threaded_total))
+
+Note que o valor total calculado pela versao sequencial da soma dos elementos do vetor e igual a soma calculada atraves das quatro threads criadas no programa para fazer o mesmo trabalho de forma dividida.
+
+Uma outra forma de sincronizacao pode ser necessaria quando ha necessidade de se acessar variaveis cujos valores sao compartilhados por varias threads rodando simultaneamente. Para isso, e necessario lancar mao da utilizacao de locks (threasing.Lock) ou semaforos (threading.Semaphore).
+``
