@@ -1,0 +1,143 @@
+#!/usr/bin/python2.7
+# -*- coding: utf-8 -*-
+# TODO criar cabecalho de servico
+# TODO criar link deste script para a pasta /etc/init.d/
+# TODO inserir script na inicializacao
+import os, sys, subprocess, time
+
+filenamepid = "/tmp/beaglepid"
+
+def main (parametro):# {{{
+    if len(parametro) == 2:
+
+        if parametro[1] == "-h" or parametro[1] == "--help":
+            print_help()
+            sys.exit(0)
+
+        elif parametro[1] == "-V" or parametro[1] == "--version":
+            print_version()
+            sys.exit(0)
+
+        elif parametro[1] == "start":
+            start()
+            sys.exit(0)
+
+        elif parametro[1] == "stop":
+            stop()
+            sys.exit(0)
+
+        elif parametro[1] == "restart":
+            restart()
+            sys.exit(0)
+
+        elif parametro[1] == "status":
+            status()
+            sys.exit(0)
+
+        else:
+            print_tip()
+            sys.exit(1)
+
+    else:
+        print_tip()
+        sys.exit(1)# }}}
+
+def start ():
+    if not check_status():
+        print "Start..."
+        p = subprocess.Popen(["/usr/bin/python2.7", os.path.expanduser('/home/zak/Documents/estudo/estudo_python/tmp/servico_linux/program.py')])
+        save_filepid(p.pid)
+    else:
+        print "Serviço executando.\n"
+
+def stop ():
+    pid = check_status()
+    if pid:
+        tentativas = 0
+        sys.stdout.write('\nParando serviço')
+        sys.stdout.flush()
+        while pid:
+            sys.stdout.write('.')
+            sys.stdout.flush()
+
+            cmd = ("kill -s TERM %s" % pid).split() if tentativas < 10 else ("kill -s SYS %s" % pid).split()
+            subprocess.Popen(cmd, stdout=subprocess.PIPE)
+            
+            time.sleep(3)
+            tentativas += 1
+            pid = check_status()
+        sys.stdout.write(' Encerrado!\n')
+        sys.stdout.flush()
+
+    else:
+        print "Serviço parado.\n"
+
+def restart ():
+    print "Restart..."
+    stop()
+    start()
+
+def status ():
+    if check_status():
+        print "Serviço em execução.\n"
+    else:
+        print "Serviço parado.\n"
+
+def check_status ():# {{{
+    pid = get_pid_in_file()
+    if pid:
+        if check_pid_process(pid):
+            return pid # esta executando
+
+        else: # nao esta executando, mas nao foi encerrado corretamente
+            remove_filepid()
+            return False
+    else:
+        return False # nao tem nada executando
+
+def save_filepid (pid):
+    filepid = open(filenamepid, "w")
+    filepid.write(str(pid))
+    filepid.close()
+
+def get_pid_in_file ():
+    try:
+        return open(filenamepid, "r").read()
+    except:
+        return None
+
+def check_pid_process (pid):
+    cmd = ("ps -p %s -o comm=" % pid).split()
+    return subprocess.Popen(cmd, stdout=subprocess.PIPE).communicate()[0]
+
+def remove_filepid ():
+    cmd = ("rm -f %s" % filenamepid).split()
+    return subprocess.Popen(cmd, stdout=subprocess.PIPE).communicate()[0]# }}}
+
+def print_tip ():# {{{
+    print "Erro: entrada inválida!\nPara obter ajuda ou informações use a opção --help"
+
+def print_help ():
+    print """
+Descrição:
+    Serviço responsavel pela inicialização do código beagle.
+
+Utilização:
+    %s [OPCAO]
+
+Opções:
+    start      Inicia o serviço se ele não estiver em execução e termina.
+    stop       Força o encerramento do serviço e termina.
+    restart    Força o encerramento do serviço, inicia-o e termina.
+    status     Exibe o atual estado do serviço e termina.
+
+    -h, --help     Exibe esta mensagem de ajuda e termina.
+    -V, --version  Exibe a versao e termina.
+""" % "nome_servico"
+
+def print_version ():
+    servico = "w.ww"
+    print "versão serviço:\t%s" % (servico)# }}}
+
+if __name__ == "__main__":
+    main(sys.argv)
