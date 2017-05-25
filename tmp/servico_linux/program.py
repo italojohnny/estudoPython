@@ -8,7 +8,7 @@ filename = "/tmp/mylog.dat"
 while True:
     value1 = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     value2 = "%0.3d" % randint(0,999)
-    
+    filelog = None
     try:
         filelog = open(filename, 'a')
         filelog.write("%s -- %s\n" % (value1, value2))
@@ -18,6 +18,6 @@ while True:
         filelog.write("%s -- %s\n" % (value1, value2))
 
     finally:
-        filelog.close()
+        if filelog: filelog.close()
 
     sleep(1)

@@ -1,8 +1,19 @@
 #!/usr/bin/python2.7
 # -*- coding: utf-8 -*-
-# TODO criar cabecalho de servico
-# TODO criar link deste script para a pasta /etc/init.d/
+### BEGIN INIT INFO
+# Provides:          meuservico
+# Required-Start:    networking
+# Required-Stop:     networking
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: This is a test daemon
+# Description:       This is a test daemon
+#                    This provides example about how to
+#                    write a Init script.
+### END INIT INFO
+# ln -s /home/italo/Documents/estudo/estudo_python/tmp/servico_linux/script /etc/init.d/meuservico
 # TODO inserir script na inicializacao
+# update-rc.d meuservico defaulte
 import os, sys, subprocess, time
 
 filenamepid = "/tmp/beaglepid"
@@ -45,7 +56,7 @@ def main (parametro):# {{{
 def start ():
     if not check_status():
         print "Start..."
-        p = subprocess.Popen(["/usr/bin/python2.7", os.path.expanduser('/home/zak/Documents/estudo/estudo_python/tmp/servico_linux/program.py')])
+        p = subprocess.Popen(["/usr/bin/python2.7", os.path.expanduser('/home/italo/Documents/estudo/estudo_python/tmp/servico_linux/program.py')])
         save_filepid(p.pid)
     else:
         print "Serviço executando.\n"

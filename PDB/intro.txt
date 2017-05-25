@@ -1,0 +1,202 @@
+PDB
+
+O pdb e um modigulo buit-in que funciona como um console interativo, onde e possivel realizar debug de codigos python. Nele e possivel fazer um step-by-step do codigo, verificando o valor de variaveis, definindo breakpoints, manipulando valores, etc. E possivel inclusive realizar step-into em metodos. Ou seja, tudo que uma boa ferramenta de debug precisa ter.
+
+COMANDOS
+
+Antes de partirmos para pratica, e importante conhecer alguns comandos basicos para ja comecar o uso do pdb de forma efetiva.
+
+Durante o debugging, eventualmente seu script ira estacionar em pontos de paradas, possivelmente definidos por voce, neste momento, os comandos a seguir poderao ser utilizados.
+
+	q (quit) - Sai da execucao do script.
+
+	n (next) - Avanca para a proxima linha do script.
+
+	p (print) - Executa o comando print do python, por exemplo:
+		> /script.py(1)<module>()
+		-> foo = "foo var"
+		(Pdb) p foo
+		'foo var'
+		Vale ressaltar que no exemplo acima, nao e necessario utilizar o comando
+		p,basta digitar o nome da variavel e pressionar enter, o efeito seria o
+		mesmo.
+
+	c (continue) - Avanca o debug ate o proximo breakpoint ou ate ocorrer uma
+	exception.
+
+	l (list) - Lista algumas linhas de codigo que estao em volta da linha atual.
+	Por padrao serao apresentadas 11 linhas (5 acima e 5 abaixo).
+
+	s (step into) - Ao realizar a navegacao atraves do comando n o debug nao ira
+	entrar em metodos que esta sendo invocado na linha corrent, basta trocar o
+	comando n, pelo comando s.
+
+	r (return) - Ja o comando r libera a execucao do script ate sair da funcao
+	atual.
+
+	b (breakpoint) Cria um breakpoint em uma determinada linha ou metodo, por
+	exemplo:
+		> /script.py(1)<module>()
+		(Pdb) b 21
+		Breakpoint 1 at /script.py:21
+		No comando acima, setamos um breakpoint na linha 21 de nosso script.
+
+		> /script.py(1)<module>()
+		(Pdb) b foo
+		Breakpoint 1 at /script.py:30
+		Ja o exemplo acima, setamos o breakpoint para o metodo foo. O pdb
+		informa qual linha ele setou o breakpoint, em nosso exemplo o metodo foo
+		esta na linha 30 do script.
+
+	a (arguments) - Mostra os argumento que foram passados para a funcao atual.
+		> /home/user/foo.py(20)<module>()
+		-> foo.bar('bars')
+		> /home/user/foo.py(3)bar()
+		-> def bar(self, the_bar):
+		(Pdb) a
+		the_bar = "barz"
+
+	ENTER - Se voce pressionar o ENTER sem nenhum comando no pdb, ele ira
+	repetir o ultimo comando executado.
+
+DEBUG NA PRATICA
+
+Vamos utilizar um script python simples e didatico como exemplo:
+
+	class NumberList (object):
+		def __init__ (self):
+			self.numbers = list()
+
+		def add (self, number):
+			if not isinstance(number, (int, float)):
+				raise TypeError
+			self.numbers.append(number)
+
+		def sum (self):
+			result = 0
+			for i in self.number:
+				result += i
+			return result
+
+	if __name__ == "__main__":
+		numbers = NumberList()
+
+		numbers.add(5)
+		assert numbers.sum() == 5
+
+		numbers.add(10)
+		assert numbers.sum() == 15
+
+		print "The End"
+
+Esse script possui uma classe chamada NumberList que armazena uma lista de
+numeros e retorna a soma deles. Alem destas classe, esse script tambem realiza
+algumas operacoes como instanciar essa classe e realizar alguns testes de
+assercao. Salve esse script em um arquivo chamado numbers.py para ser utilizado
+em nossos exemplos.
+
+MODOS DE USO DO PDB
+
+Na pratica se assemelha bastante ao prompt interativo do python, com a diferenca
+dos caracteres identificadores. Enquanto que no prompt interativo do python o
+idenrificados e o >>>, no pdb o identificador e (Pdb). Existem algumas maneiras
+de usar o pdb, depende da forma como voce pretende realizer o debug.
+
+PDB.PY
+
+Uma delas e atraves da chamada do script pdb.py passando como parametro o script
+para ser feito do debug, por exemplo:
+
+	python -m pdb numbers.py
+
+Isso fara com o pdb seja iniciado na primeira linha do script numbers.py, no
+caso, a declaracao da classe NumberList(). Caso voce execute o comando n, a
+proxima linha sera o if "__main__" == __name__: e assim por diante. Utilizando
+desta maneira, voce pode verificar linha a linha do script ou setar um
+breakpoint assim que entrar no debug, por exemplo, se voce quer criar um
+breackpoint na execucao do metodo sum() de uma instancia da classe NumberList(),
+basta executar o comando b number.sum.
+
+	(venv)user@machine:~/$ python -m pdb numbers.py
+	> /home/user/numbers.py(4)<module>()
+	-> class NumberList(object):
+	(Pdb) n
+	> /home/user/numbers.py(20)<module>()
+	-> if __name__ == "__main__":
+	(Pdb) n
+	> /home/user/numbers.py(21)<module>()
+	-> numbers = NumberList()
+	(Pdb) n
+	> /home/user/numbers.py(23)<module>()
+	-> numbers.add(5)
+	(Pdb) b numbers.sum
+	Breakpoint 1 at /home/user/numbers.py:13
+	(Pdb)
+
+Ou para simplificar, tambem poderiamos setar o breakpoint pelo numero da linha.
+
+	(venv)user@machine:~/$ python -m pdb numbers.py
+	> /home/user/numbers.py(4)<module>()
+	-> class NumberList(object):
+	(Pdb) b 13
+	Breakpoint 1 at /home/user/numbers.py:13
+	(Pdb)
+
+PDB.SET_TRACE()
+
+Outra forma e utilizar o metodo set_trace() do pacote pdb. Com o pdb.set_trace()
+voce pode definir onde sera o seu breakpoint via codigo, pore exemplo, faremos
+uma alteracao em nosso script para setar um breakpoint no metodo NumberList()
+.sum().
+
+	class NumberList(object):
+		def __init__ (self):
+			self.numbers = list()
+
+		def add (self, number):
+			if not isinstance(number, (int, float):
+				raise TypeError
+			self.numbers.append(number)
+
+		def sum (self):
+			import pdb
+			pdb.set_trace()
+
+			result = 0
+			for i in self.numbers:
+				result += i
+
+			return result
+
+	"""
+	Resto do script
+	"""
+
+Desta forma, ao executar o script (sem a necessidade de ser via pdb) e passar
+pelo metodo pdb.set_trace() sera iniciado um prompt interativo do pdb.
+
+	(venv)user@machine:~/$ python numbers.py
+	> /home/user/numbers.py(16)sum()
+	-> result = 0
+	(Pdb)
+
+IPDB
+
+
+Uma das desvantagens do prompt interativo do python e a falta de syntax
+highlighting e code completion, com o pdb nao e diferente, porem, assim como
+podemos recorrer ao ipython para isso, tambem podemos utilizar o ipdb. O ipdb e
+uma especie de wrapper para o pdb que faz uso das rotinas de debug do Ipython. A
+maneira de uso se assemelha bastante ao pdb, bastando trocar pdb pelo pacote
+ipdb.
+
+	import ipdb
+	foo = "foo"
+	ipdb.set_trace()
+	bar = "bar"
+
+Para instalar o ipdb basta utilizar o pip
+
+	pip install ipdb
+
+Com certexa recomendo o uso do ipdb principalmente por ser mais intuitivo.
