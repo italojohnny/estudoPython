@@ -3,8 +3,11 @@
 # sudo apt-get install imagemagick
 #import psycopg2 # sudo apt-get install python-psycopg2
 import os
+import sys
 import commands
 import re
+import time
+import pdb
 
 def general_log (message):
     log = "[datahora] %s" % message
@@ -62,7 +65,6 @@ class Camera:# {{{
         cmd = ["convert -resize '%sx%s' %s %s" % (self.width, self.height, i['o'], i['d']) for i in final]
         for i in cmd:
             try:
-                print i
                 result, output = commands.getstatusoutput(i)
                 if result == 0:
                     print 'sucesso'
@@ -136,13 +138,38 @@ class DataBase:# {{{
             return list()
 # }}}
 
+def child (camera):
+    # aprimorar isso
+    #cameras[0].make_subfolders()
+    #cameras[0].make_files()
+    while True:
+        print camera.name
+        time.sleep(1)
+
 if __name__ == "__main__":
     #cameras = DataBase.get_cameras()
-    cameras = [Camera("camera1", "/home/italo/Pictures", "/home/italo/tmp")]
-    if not cameras: exit(0)
+    cameras = [
+            Camera("camera1", "/home/zak/Downloads/others/trash", "/home/zak/tmp"),
+            Camera("camera2", "/home/zak/Downloads/others/trash", "/home/zak/tmp"),
+            Camera("camera3", "/home/zak/Downloads/others/trash", "/home/zak/tmp"),
+            Camera("camera4", "/home/zak/Downloads/others/trash", "/home/zak/tmp"),
+            ]
     # cada item da lista sera manipulado por uma thread
+    identification = None
+    for i in range(0, len(cameras)):
+        newprocess = os.fork()
+        if newprocess:
+            continue
+        else:
+            identification = i
+            break
 
-    cameras[0].make_subfolders()
-    cameras[0].make_files()
+    if identification != None:
+        #sys.stdout.flush()
+        #sys.stderr.flush()
+        #sys.stdout = open('/dev/null', 'w')
+        #sys.stderr = open('/dev/null', 'w')
 
+        child(cameras[identification])
 
+            
